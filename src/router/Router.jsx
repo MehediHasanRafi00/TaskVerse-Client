@@ -7,6 +7,7 @@ import AddJob from "../pages/AddJob";
 import AcceptedTasks from "../pages/AcceptedTasks";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import PrivateRoute from "./PrivateRouter";
 
 export const router = createBrowserRouter([
   {
@@ -23,20 +24,28 @@ export const router = createBrowserRouter([
       },
       {
         path: "add-job",
-        element: <AddJob></AddJob>,
+        element: (
+          <PrivateRoute>
+            <AddJob></AddJob>
+          </PrivateRoute>
+        ),
       },
       {
         path: "accepted-tasks",
-        element: <AcceptedTasks></AcceptedTasks>,
-      },
-      {
-        path: "auth/login",
-        element: <Login></Login>,
-      },
-      {
-        path: "auth/register",
-        element: <Register></Register>,
+        element: (
+          <PrivateRoute>
+            <AcceptedTasks></AcceptedTasks>
+          </PrivateRoute>
+        ),
       },
     ],
+  },
+  {
+    path: "auth/login",
+    element: <Login></Login>,
+  },
+  {
+    path: "auth/register",
+    element: <Register></Register>,
   },
 ]);
