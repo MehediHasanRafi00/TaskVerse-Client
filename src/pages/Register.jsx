@@ -20,7 +20,7 @@ const Register = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
- 
+
   const { createUser, updateUserProfile, signInWithGoogle } = use(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
@@ -45,7 +45,6 @@ const Register = () => {
       return;
     }
 
-   
     toast.loading("Creating user...", { id: "create-user" });
     createUser(email, password)
       .then((result) => {
@@ -57,7 +56,20 @@ const Register = () => {
       })
       .catch((error) => {
         console.log(error);
-        toast.error(error.message, { id: "create-user" });
+        let message = "";
+        if (error.code === "auth/email-already-in-use") {
+          message = "Email is already in use.";
+        } else if (error.code === "auth/invalid-email") {
+          message = "Invalid email address.";
+        } else if (error.code === "auth/operation-not-allowed") {
+          message = "Operation not allowed. Contact support.";
+        } else if (error.code === "auth/weak-password") {
+          message = "Password is too weak. Minimum 6 characters required.";
+        } else {
+          message = error.message;
+        }
+
+        toast.error(message, { id: "create-user" });
       });
   };
   const handleGoogleSignIn = () => {
@@ -70,7 +82,23 @@ const Register = () => {
       })
       .catch((error) => {
         console.log(error);
-        toast.error(error.message, { id: "create-user" });
+        let message = "";
+
+        if (error.code === "auth/popup-closed-by-user") {
+          message = "Sign-in popup was closed before completing.";
+        } else if (error.code === "auth/cancelled-popup-request") {
+          message = "Sign-in was cancelled due to another active popup.";
+        } else if (
+          error.code === "auth/account-exists-with-different-credential"
+        ) {
+          message = "An account already exists with a different provider.";
+        } else if (error.code === "auth/network-request-failed") {
+          message = "Network error. Please check your connection.";
+        } else {
+          message = error.message;
+        }
+
+        toast.error(message, { id: "create-user" });
       });
   };
 

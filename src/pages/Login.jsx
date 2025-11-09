@@ -31,7 +31,22 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error);
-        toast.error(error.message, { id: "login-user" });
+        let message = "";
+        if (error.code === "auth/invalid-email") {
+          message = "Invalid email address.";
+        } else if (error.code === "auth/user-disabled") {
+          message = "This account has been disabled.";
+        } else if (error.code === "auth/user-not-found") {
+          message = "No account found with this email.";
+        } else if (error.code === "auth/wrong-password") {
+          message = "Incorrect password.";
+        } else if (error.code === "auth/too-many-requests") {
+          message = "Too many login attempts. Try again later.";
+        } else {
+          message = error.message;
+        }
+
+        toast.error(message, { id: "login-user" });
       });
   };
 
@@ -45,7 +60,23 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error);
-        toast.error(error.message, { id: "login-user" });
+        let message = "";
+
+        if (error.code === "auth/popup-closed-by-user") {
+          message = "Sign-in popup was closed before completing.";
+        } else if (error.code === "auth/cancelled-popup-request") {
+          message = "Sign-in was cancelled due to another active popup.";
+        } else if (
+          error.code === "auth/account-exists-with-different-credential"
+        ) {
+          message = "An account already exists with a different provider.";
+        } else if (error.code === "auth/network-request-failed") {
+          message = "Network error. Please check your connection.";
+        } else {
+          message = error.message;
+        }
+
+        toast.error(message, { id: "login-user" });
       });
   };
 

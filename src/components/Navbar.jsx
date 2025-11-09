@@ -9,26 +9,35 @@ const Navbar = () => {
   const navItems = (
     <>
       <li>
-        <NavLink to={"/"} className="nav-link px-3 py-2 font-medium">
+        <NavLink
+          to="/"
+          className="nav-link px-3 py-2 font-medium hover:text-secondary transition-colors duration-200"
+        >
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink to={"/all-jobs"} className="nav-link px-3 py-2 font-medium">
+        <NavLink
+          to="/all-jobs"
+          className="nav-link px-3 py-2 font-medium hover:text-secondary transition-colors duration-200"
+        >
           All Jobs
         </NavLink>
       </li>
       {user && (
         <>
           <li>
-            <NavLink to={"/add-job"} className="nav-link px-3 py-2 font-medium">
+            <NavLink
+              to="/add-job"
+              className="nav-link px-3 py-2 font-medium hover:text-secondary transition-colors duration-200"
+            >
               Add a Job
             </NavLink>
           </li>
           <li>
             <NavLink
-              to={"/accepted-tasks"}
-              className="nav-link px-3 py-2 font-medium"
+              to="/accepted-tasks"
+              className="nav-link px-3 py-2 font-medium hover:text-secondary transition-colors duration-200"
             >
               My Accepted Tasks
             </NavLink>
@@ -39,11 +48,11 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-primary text-primary-content shadow-md sticky top-0 z-50">
-      <div className="navbar container mx-auto">
-        {/* Navbar Start */}
+    <header className="sticky top-0 z-50 bg-linear-to-r from-primary to-[#053738] text-primary-content shadow-lg">
+      <nav className="navbar container mx-auto py-3">
+      
         <div className="navbar-start">
-          {/* Mobile Dropdown */}
+       
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -69,30 +78,31 @@ const Navbar = () => {
             </ul>
           </div>
 
-          {/* Logo */}
-          <Link to={"/"} className="flex items-center gap-2">
-            <img src={logo} alt="TaskVerse Logo" className="w-10" />
-            <h1 className="font-extrabold text-2xl tracking-wide hidden md:block logo-font">
+      
+          <Link to="/" className="flex items-center gap-2">
+            <img
+              src={logo}
+              alt="TaskVerse Logo"
+              className="w-10 drop-shadow-md"
+            />
+            <h1 className="font-extrabold text-2xl tracking-wide hidden md:block logo-font ">
               Task
               <span className="text-secondary">Verse</span>
             </h1>
           </Link>
         </div>
 
-        {/* Center Nav (Desktop) */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-2">{navItems}</ul>
         </div>
 
-        {/* Navbar End (Auth Buttons) */}
-        <div className="navbar-end ">
+        <div className="navbar-end">
           {user ? (
-            <div className="dropdown dropdown-end z-50 text-black ">
-              {/* Avatar Button */}
+            <div className="dropdown dropdown-end z-50">
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle avatar focus:outline-none"
+                className="btn btn-ghost btn-circle avatar hover:ring-2 hover:ring-secondary/60 transition-all"
               >
                 <div className="w-10 h-10 border-2 border-secondary rounded-full overflow-hidden">
                   <img
@@ -106,43 +116,36 @@ const Navbar = () => {
                 </div>
               </div>
 
-              {/* Dropdown Menu */}
               <ul
-                tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-300 rounded-box shadow-lg mt-3 w-60 p-2 z-50"
+                tabIndex={-1}
+                className="menu menu-sm dropdown-content bg-base-300 text-base-content rounded-box shadow-lg mt-3 w-60 p-3"
               >
-                {/* User Info */}
-                <div className="px-4 py-2 border-b border-gray-200">
-                  <li className="text-lg font-semibold">{user?.displayName}</li>
-                  <li className="text-sm text-gray-500">{user?.email}</li>
+                <div className="px-3 py-2 border-b border-gray-300/40 mb-2">
+                  <p className="text-lg font-semibold">{user?.displayName}</p>
+                  <p className="text-sm text-gray-500">{user?.email}</p>
                 </div>
 
-                {/* Menu Items */}
-                <li className="mt-2 hover:bg-gray-100 rounded-md">
-                  <Link to="/profile">Profile</Link>
+                <li>
+                  <Link
+                    to="/profile"
+                    className="hover:bg-secondary/20 rounded-md transition"
+                  >
+                    Profile
+                  </Link>
                 </li>
-                <li className="hover:bg-gray-100 rounded-md">
-                  <Link to="/my-models">My Tasks</Link>
+                <li>
+                  <Link
+                    to="/my-models"
+                    className="hover:bg-secondary/20 rounded-md transition"
+                  >
+                    My Tasks
+                  </Link>
                 </li>
 
-                {/* Theme Toggle
-                <li className="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
-                  <span>Dark Mode</span>
-                  <input
-                    type="checkbox"
-                    className="toggle toggle-sm"
-                    defaultChecked={localStorage.getItem("theme") === "dark"}
-                    onChange={(e) =>
-                      handleTheme(e.target.checked ? "dark" : "light")
-                    }
-                  />
-                </li> */}
-
-                {/* Logout Button */}
-                <li className="px-4 py-2 mt-2">
+                <li className="mt-2">
                   <button
                     onClick={signOutUser}
-                    className="btn btn-secondary btn-sm w-full text-primary"
+                    className="btn btn-secondary w-full text-primary font-semibold hover:opacity-90"
                   >
                     Logout
                   </button>
@@ -152,13 +155,13 @@ const Navbar = () => {
           ) : (
             <div className="space-x-2">
               <Link
-                to={"/auth/login"}
+                to="/auth/login"
                 className="btn btn-outline border-secondary text-secondary hover:bg-secondary hover:text-primary transition-all"
               >
                 Login
               </Link>
               <Link
-                to={"/auth/register"}
+                to="/auth/register"
                 className="btn bg-secondary border-none text-primary hover:bg-[#e6bb32] transition-all"
               >
                 Register
@@ -166,8 +169,8 @@ const Navbar = () => {
             </div>
           )}
         </div>
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 };
 

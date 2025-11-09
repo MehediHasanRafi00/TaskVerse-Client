@@ -22,7 +22,7 @@ body{
 /* Simple & Clean Navigation Styles */
 
 .nav-link {
-  @apply text-white hover:text-secondary transition-all duration-300 relative px-2 py-2;
+  @apply text-white hover:text-secondary hover:bg-secondary/10 transition-all duration-300 relative px-2 py-2;
 }
 
 /* Hover underline effect */
