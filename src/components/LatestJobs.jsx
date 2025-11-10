@@ -20,9 +20,9 @@ const LatestJobs = ({latestJobsPromise}) => {
     const data = use(latestJobsPromise)
 
   return (
-    <div className="container mx-auto my-8 px-5">
+    <div className="container mx-auto my-30 px-5">
       <motion.h2
-        className="text-3xl font-semibold text-black text-center"
+        className="text-4xl font-semibold text-black text-center "
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}

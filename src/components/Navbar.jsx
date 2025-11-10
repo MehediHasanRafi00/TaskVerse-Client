@@ -54,7 +54,7 @@ const Navbar = () => {
   );
 
   return (
-    <header className=" z-50 bg-linear-to-r from-primary to-[#053738] text-primary-content shadow-lg">
+    <header className=" z-50 bg-linear-to-r from-primary to-[#053738] text-primary-content shadow-lg border-b border-secondary/50">
       <nav className="navbar container mx-auto py-3">
       
         <div className="navbar-start">

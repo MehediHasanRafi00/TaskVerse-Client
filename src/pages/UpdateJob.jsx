@@ -1,18 +1,20 @@
-import React, { useContext } from "react";
-import { motion } from "framer-motion";
+import { use } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { toast } from "react-hot-toast";
+import { motion } from "framer-motion";
+import { useLoaderData, useLocation, useNavigate } from "react-router";
+import toast from "react-hot-toast";
 import useAxios from "../hook/useAxios";
-import Swal from "sweetalert2";
 
-const PostJob = () => {
-  const { user } = useContext(AuthContext);
+const UpdateJob = () => {
+  const job = useLoaderData();
+
+  const { user } = use(AuthContext);
   const axios = useAxios();
-  
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const form = e.target;
     const title = form.title.value;
     const category = form.category.value;
@@ -37,29 +39,21 @@ const PostJob = () => {
       coverImage,
       skills,
       experienceRequired,
-      postedBy: user?.displayName || "Anonymous",
-      postedByEmail: user?.email || "N/A",
-      postedByImage:
-        user?.photoURL || "https://www.w3schools.com/howto/img_avatar.png",
-      created_at: new Date().toISOString(),
     };
 
-    console.log("Job Data:", jobData);
-
     try {
-      const res = await axios.post("/addJob", jobData);
-      Swal.fire({
-        title: "Job posted successfully!",
-        icon: "success",
-        draggable: true,
-      });
+      const res = await axios.put(`/updateJob/${job._id}`, jobData);
+      toast.success("Job Update successfully!");
       form.reset();
+      setTimeout(() => {
+        navigate(location?.state || "/");
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.error(error);
-      toast.error(error.response?.data?.message || "Failed to post job");
+      toast.error(error.response?.data?.message || "Failed to Update the job");
     }
   };
-
   return (
     <div className="min-h-screen bg-base-300 py-15 flex justify-center items-center">
       <motion.div
@@ -70,7 +64,7 @@ const PostJob = () => {
         className="bg-white w-full max-w-2xl rounded-2xl shadow-lg p-8 border border-secondary/30"
       >
         <h2 className="text-3xl font-bold text-center text-primary mb-8">
-          Post a New Job
+          Update The Post
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -82,6 +76,7 @@ const PostJob = () => {
             <input
               type="text"
               name="title"
+              defaultValue={job.title}
               placeholder=" Frontend Developer"
               className="input input-bordered w-full"
               required
@@ -94,6 +89,7 @@ const PostJob = () => {
               Category *
             </label>
             <select
+              defaultValue={job.category}
               name="category"
               className="select select-bordered w-full"
               required
@@ -121,6 +117,7 @@ const PostJob = () => {
             <input
               type="number"
               name="price"
+              defaultValue={job.price}
               placeholder="Enter your offered price"
               className="input input-bordered w-full"
               required
@@ -135,6 +132,7 @@ const PostJob = () => {
             <input
               type="text"
               name="summary"
+              defaultValue={job.summary}
               placeholder="A short summary of the job"
               className="input input-bordered w-full"
               required
@@ -148,6 +146,7 @@ const PostJob = () => {
             </label>
             <textarea
               name="description"
+              defaultValue={job.description}
               placeholder="Detailed job description..."
               className="textarea textarea-bordered w-full"
               rows="6"
@@ -163,6 +162,7 @@ const PostJob = () => {
             <input
               type="text"
               name="skills"
+              defaultValue={job.skills}
               placeholder=" React, Node.js, MongoDB"
               className="input input-bordered w-full"
             />
@@ -176,6 +176,7 @@ const PostJob = () => {
             <input
               type="text"
               name="experienceRequired"
+              defaultValue={job.experienceRequired}
               placeholder=" 3+ years in frontend development"
               className="input input-bordered w-full"
             />
@@ -189,6 +190,7 @@ const PostJob = () => {
             <input
               type="url"
               name="coverImage"
+              defaultValue={job.coverImage}
               placeholder="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg"
               className="input input-bordered w-full"
               required
@@ -227,7 +229,7 @@ const PostJob = () => {
               type="submit"
               className="btn bg-secondary text-primary font-semibold hover:bg-secondary/80 w-full"
             >
-              Post Job
+              Update Job
             </button>
           </div>
         </form>
@@ -236,4 +238,4 @@ const PostJob = () => {
   );
 };
 
-export default PostJob;
+export default UpdateJob;
