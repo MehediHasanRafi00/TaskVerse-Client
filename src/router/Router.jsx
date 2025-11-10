@@ -8,6 +8,7 @@ import AcceptedTasks from "../pages/AcceptedTasks";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRouter";
+import Profile from "../pages/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ export const router = createBrowserRouter([
       {
         path: "all-jobs",
         Component: AllJobs,
+        loader: ()=> fetch('http://localhost:3000/allJobs')
       },
       {
         path: "add-job",
@@ -38,9 +40,18 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <Profile></Profile>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
+
     path: "auth/login",
     element: <Login></Login>,
   },

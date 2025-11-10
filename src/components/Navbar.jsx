@@ -2,6 +2,7 @@ import React, { use } from "react";
 import { Link, NavLink } from "react-router";
 import logo from "/logo.png";
 import { AuthContext } from "../context/AuthContext";
+import { BookCheck, CircleCheckBig, CirclePlus, House, TableOfContents, UserPen } from "lucide-react";
 
 const Navbar = () => {
   const { user, signOutUser } = use(AuthContext);
@@ -9,10 +10,12 @@ const Navbar = () => {
   const navItems = (
     <>
       <li>
+        
         <NavLink
           to="/"
           className="nav-link px-3 py-2 font-medium hover:text-secondary transition-colors duration-200"
         >
+          <House size={17} />
           Home
         </NavLink>
       </li>
@@ -21,6 +24,7 @@ const Navbar = () => {
           to="/all-jobs"
           className="nav-link px-3 py-2 font-medium hover:text-secondary transition-colors duration-200"
         >
+          <TableOfContents size={17}/>
           All Jobs
         </NavLink>
       </li>
@@ -31,6 +35,7 @@ const Navbar = () => {
               to="/add-job"
               className="nav-link px-3 py-2 font-medium hover:text-secondary transition-colors duration-200"
             >
+              <CirclePlus size={17}/>
               Add a Job
             </NavLink>
           </li>
@@ -39,6 +44,7 @@ const Navbar = () => {
               to="/accepted-tasks"
               className="nav-link px-3 py-2 font-medium hover:text-secondary transition-colors duration-200"
             >
+              <CircleCheckBig size={17}/>
               My Accepted Tasks
             </NavLink>
           </li>
@@ -48,7 +54,7 @@ const Navbar = () => {
   );
 
   return (
-    <header className="sticky top-0 z-50 bg-linear-to-r from-primary to-[#053738] text-primary-content shadow-lg">
+    <header className=" z-50 bg-linear-to-r from-primary to-[#053738] text-primary-content shadow-lg">
       <nav className="navbar container mx-auto py-3">
       
         <div className="navbar-start">
@@ -118,7 +124,7 @@ const Navbar = () => {
 
               <ul
                 tabIndex={-1}
-                className="menu menu-sm dropdown-content bg-base-300 text-base-content rounded-box shadow-lg mt-3 w-60 p-3"
+                className="menu menu-sm dropdown-content bg-base-300 text-base-content rounded-box shadow-lg mt-3  p-3"
               >
                 <div className="px-3 py-2 border-b border-gray-300/40 mb-2">
                   <p className="text-lg font-semibold">{user?.displayName}</p>
@@ -130,14 +136,16 @@ const Navbar = () => {
                     to="/profile"
                     className="hover:bg-secondary/20 rounded-md transition"
                   >
+                    <UserPen size={15}/>
                     Profile
                   </Link>
                 </li>
                 <li>
                   <Link
-                    to="/my-models"
+                    to="/accepted-tasks"
                     className="hover:bg-secondary/20 rounded-md transition"
                   >
+                    <BookCheck size={15} />
                     My Tasks
                   </Link>
                 </li>
