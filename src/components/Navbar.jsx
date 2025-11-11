@@ -120,7 +120,7 @@ const Navbar = () => {
             />
             <h1 className="font-extrabold text-2xl tracking-wide hidden md:block logo-font ">
               Task
-              <span className="text-secondary">Verse</span>
+              <span className="text-white">Verse</span>
             </h1>
           </Link>
         </div>
@@ -220,6 +220,8 @@ const Navbar = () => {
                   >
                     Logout
                   </button>
+
+                  
                 </li>
               </ul>
             </div>

@@ -247,7 +247,7 @@ const Login = () => {
                 <label className="label cursor-pointer gap-2 p-0">
                   <input
                     type="checkbox"
-                    className="checkbox checkbox-primary checkbox-sm"
+                    className="checkbox  checkbox-sm"
                   />
                   <span className="label-text text-sm">Remember me</span>
                 </label>

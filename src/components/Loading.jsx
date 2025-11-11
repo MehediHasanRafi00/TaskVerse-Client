@@ -29,7 +29,7 @@ const Loading = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
       >
-        Task<span className="text-white">Verse</span>
+        Task<span className="text-primary">Verse</span>
       </motion.h1>
 
       <motion.p

@@ -9,7 +9,7 @@ import {
   Image,
   CircleAlert,
 } from "lucide-react";
-import register from "../assets/login.svg";
+import register from "../assets/register.png";
 import logo from "/logo.png";
 import { Link, useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
@@ -161,7 +161,7 @@ const Register = () => {
 
         <motion.img
           src={register}
-          className="w-3/4 max-w-lg relative z-10 drop-shadow-2xl"
+          className="w-5/6 max-w-lg relative z-10 drop-shadow-2xl"
           alt="Register illustration"
         />
 
