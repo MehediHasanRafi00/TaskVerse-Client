@@ -23,23 +23,36 @@ import Loading from "../components/Loading";
 
 const JobDetail = () => {
   const navigate = useNavigate();
-  const { user,refetch } = use(AuthContext);
+  const { user, refetch } = use(AuthContext);
   const axios = useAxios();
   const { id } = useParams();
   const [job, setJob] = useState();
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
-    axios.get(`/allJobs/${id}`).then((data) => {
-      setJob(data.data);
-    });
-  }, [axios, id,refetch]);
+    setLoading(true);
+    axios
+      .get(`/allJobs/${id}`)
+      .then((res) => {
+        if (!res.data || Object.keys(res.data).length === 0) {
+          // Job does not exist
+          setNotFound(true);
+        } else {
+          setJob(res.data);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        setNotFound(true);
+      })
+      .finally(() => setLoading(false));
+  }, [axios, id]);
 
   const randomYear = Math.floor(Math.random() * (2025 - 2010 + 1)) + 2010;
   const randomDay = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
   const randomNumber = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
   const randomView = Math.floor(Math.random() * (800 - 200 + 1)) + 200;
-
-  if (!job) return <Loading></Loading>;
 
   const handleAccept = async () => {
     if (user.email === job.postedByEmail) {
@@ -62,6 +75,18 @@ const JobDetail = () => {
       });
     }
   };
+  if (loading) return <Loading></Loading>;
+
+  if (job === null) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <h1 className="text-3xl font-bold text-red-500">Job Not Found</h1>
+        <Link to="/allJobs" className="ml-4 text-blue-500 underline">
+          Back to Jobs
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-linear-to-br from-base-100 to-base-300 py-8 px-4">
@@ -174,7 +199,9 @@ const JobDetail = () => {
                   Job Summary
                 </h2>
               </div>
-              <p className="text-secondary-content/80 leading-relaxed">{job.summary}</p>
+              <p className="text-secondary-content/80 leading-relaxed">
+                {job.summary}
+              </p>
             </motion.div>
 
             {/* Full Description */}
@@ -269,7 +296,9 @@ const JobDetail = () => {
                   />
                 </div>
                 <div>
-                  <p className="font-bold text-primary-content/90">{job.postedBy}</p>
+                  <p className="font-bold text-primary-content/90">
+                    {job.postedBy}
+                  </p>
                   <p className="text-sm text-secondary-content/70 flex items-center gap-1">
                     {" "}
                     <span className="text-green-600">
@@ -286,13 +315,17 @@ const JobDetail = () => {
                   <div className="w-8 h-8 bg-gray-300 rounded-lg flex items-center justify-center">
                     <Mail size={16} />
                   </div>
-                  <span className="text-sm truncate text-secondary-content/60">{job.postedByEmail}</span>
+                  <span className="text-sm truncate text-secondary-content/60">
+                    {job.postedByEmail}
+                  </span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-600">
                   <div className="w-8 h-8 bg-gray-300 rounded-lg flex items-center justify-center">
                     <User size={16} />
                   </div>
-                  <span className="text-sm text-secondary-content/60">Member since {randomYear}</span>
+                  <span className="text-sm text-secondary-content/60">
+                    Member since {randomYear}
+                  </span>
                 </div>
               </div>
 
