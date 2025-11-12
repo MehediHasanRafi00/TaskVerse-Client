@@ -11,10 +11,11 @@ const images = [
 ];
 
 const BannerColumn = ({ direction = "down" }) => {
-  const width = 500;
-  const height = 300;
   const gap = 16;
-  const heightPerImage = height + gap;
+
+  const isMobile = window.matchMedia("(max-width: 640px)").matches;
+  const imgHeight = isMobile ? 100 : 300; 
+  const heightPerImage = imgHeight + gap;
   const totalHeight = images.length * heightPerImage;
 
   const loopImages = [...images, ...images];
@@ -26,7 +27,7 @@ const BannerColumn = ({ direction = "down" }) => {
           y: direction === "down" ? [0, -totalHeight] : [-totalHeight, 0],
         }}
         transition={{
-          duration: 25,
+          duration: isMobile ? 30 : 25, 
           repeat: Infinity,
           ease: "linear",
         }}
@@ -37,8 +38,12 @@ const BannerColumn = ({ direction = "down" }) => {
             key={i}
             src={img}
             alt="banner"
-            className="object-cover rounded-xl border border-secondary/70 shadow-md transition-shadow hover:shadow-[0_0_2px_#f7ce3e,0_0_4px_#f7ce3e]"
-            style={{ width: `${width}px`, height: `${height}px` }}
+            className="
+              object-cover rounded-xl border border-secondary/70 shadow-md
+              transition-shadow hover:shadow-[0_0_2px_#f7ce3e,0_0_4px_#f7ce3e]
+              w-40 sm:w-[220px] md:w-[320px] lg:w-[400px] xl:w-[500px]
+              h-[100px] sm:h-40 md:h-[220px] lg:h-[260px] xl:h-[300px]
+            "
           />
         ))}
       </motion.div>
@@ -51,12 +56,14 @@ const Banner = () => {
     <section className="relative w-full h-screen overflow-hidden flex items-center justify-center border-b border-secondary">
       <div className="absolute inset-0 bg-linear-to-b from-[#042A2B]/90 via-[#0A7373]/80 to-[#042A2B]/90"></div>
       <div className="absolute inset-0 bg-black/50 z-5"></div>
-      <div className="absolute z-10 text-center px-4 ">
+
+      {/* Center Content */}
+      <div className="absolute z-10 text-center px-4">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-4xl md:text-6xl font-bold bg-linear-to-r  from-[#f7ce3e] via-[#FFD84C] to-[#f7ce3e] bg-clip-text text-transparent mb-4 drop-shadow-lg"
+          className="text-3xl sm:text-4xl md:text-6xl font-bold bg-linear-to-r from-[#f7ce3e] via-[#FFD84C] to-[#f7ce3e] bg-clip-text text-transparent mb-4 drop-shadow-lg"
         >
           Turn Your Skills Into Opportunity
         </motion.h1>
@@ -65,7 +72,7 @@ const Banner = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
-          className="text-lg md:text-2xl text-gray-300 mb-6 drop-shadow-md"
+          className="text-base sm:text-lg md:text-2xl text-gray-300 mb-6 drop-shadow-md"
         >
           Connect with clients worldwide and grow your career with real
           opportunities.
@@ -76,7 +83,7 @@ const Banner = () => {
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="btn btn-lg  bg-[#042A2B] text-white border-none hover:bg-[#063637]"
+              className="btn btn-lg bg-[#042A2B] text-white border-none hover:bg-[#063637]"
             >
               All Jobs
             </motion.button>
@@ -85,7 +92,7 @@ const Banner = () => {
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="btn btn-lg  bg-[#F7CE3E] text-[#042A2B] border-none hover:bg-[#FFD84C]"
+              className="btn btn-lg bg-[#F7CE3E] text-[#042A2B] border-none hover:bg-[#FFD84C]"
             >
               Create a Job
             </motion.button>
@@ -93,7 +100,8 @@ const Banner = () => {
         </div>
       </div>
 
-      <div className="absolute inset-0 flex justify-center gap-4 px-2 md:px-8">
+      {/* Background Columns */}
+      <div className="absolute inset-0 flex justify-center gap-2 sm:gap-4 px-2 md:px-8">
         {[0, 1, 2, 3, 4].map((i) => (
           <BannerColumn key={i} direction={i % 2 === 0 ? "down" : "up"} />
         ))}
