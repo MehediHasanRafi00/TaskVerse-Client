@@ -1,16 +1,135 @@
-# React + Vite
+# Freelance Marketplace - TaskVerse
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Live Site](https://img.shields.io/badge/Live%20Site-Visit-blue)](https://taskverse-0.web.app/)  
+[![Client Repo](https://img.shields.io/badge/Client%20Repo-GitHub-black?logo=github)](https://github.com/MehediHasanRafi00/TaskVerse-Client)  
+[![Server Repo](https://img.shields.io/badge/Server%20Repo-GitHub-black?logo=github)](https://github.com/MehediHasanRafi00/TaskVerse-Server)  
+[![Client Commits](https://img.shields.io/badge/Client%20Commits-View-orange)](https://github.com/MehediHasanRafi00/TaskVerse-Client/commits/main/)  
+[![Server Commits](https://img.shields.io/badge/Server%20Commits-View-orange)](https://github.com/MehediHasanRafi00/TaskVerse-Server/commits/main/)
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Overview
 
-## React Compiler
+**TaskVerse** is a full-stack Freelance Marketplace application where users can explore, post, update, and manage jobs or tasks. Authenticated users can manage their own jobs, accept jobs from others, and update their profile information. The project demonstrates integration of **Node.js + Express.js**, **MongoDB**, **Firebase Authentication**, and a **React** frontend with modern animations.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Live Site:** [https://taskverse-0.web.app/](https://taskverse-0.web.app/)  
+**Server API:** [https://taskverse-server.vercel.app/](https://taskverse-server.vercel.app/)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+
+- **User Authentication:** Email/password and Google login.
+- **Profile Section:** Update user information including name, photo, and email.
+- **Job Management (CRUD):** Users can add, update, and delete their own jobs.
+- **Task Acceptance:** Users can accept jobs posted by others.
+- **Dynamic Job Display:** Latest jobs displayed dynamically on the homepage and All Jobs page.
+- **Private Routes:** Add Job, Update Job, My Added Jobs, My Accepted Tasks protected for authenticated users.
+- **Responsive Design:** Works seamlessly on mobile, tablet, and desktop.
+- **Dark/Light Mode Toggle:** Switch themes easily.
+- **Sorting & Filtering:** Sort jobs by posted date or category.
+- **Toast Notifications:** Success and error messages via `react-hot-toast` and `SweetAlert2`.
+- **Animations:** Smooth transitions with **Framer Motion** and **React Bits**.
+- **Custom 404 Page:** Friendly error page for invalid routes.
+
+---
+
+## Pages & Routes
+
+| Route                | Description                                                    |
+| -------------------- | -------------------------------------------------------------- |
+| `/`                  | Homepage with banner, latest jobs, and dynamic/static sections |
+| `/allJobs`           | View all jobs in grid/table format                             |
+| `/allJobs/:id`       | View single job details and accept job                         |
+| `/addJob`            | Add a new job (private route)                                  |
+| `/updateJob/:id`     | Update an existing job (private route)                         |
+| `/deleteJob/:id`     | Delete a job (private route)                                   |
+| `/myAddedJobs`       | View jobs added by logged-in user (private route)              |
+| `/my-accepted-tasks` | View accepted jobs (private route)                             |
+| `/login`             | User login page                                                |
+| `/register`          | User registration page                                         |
+
+---
+
+## Tech Stack & Packages
+
+**Frontend:**
+
+- React.js, React DOM, React Router
+- Tailwind CSS, DaisyUI
+- Framer Motion, React Bits
+- Axios, React-hot-toast, SweetAlert2
+- Firebase, React Icons, Lucide-react
+
+**Backend:**
+
+- Node.js, Express.js, CORS, Dotenv
+- MongoDB Atlas
+- Firebase Admin
+
+---
+
+## Environment Variables
+
+**Client-side (.env):**
+
+```bash
+VITE_FIREBASE_API_KEY
+VITE_FIREBASE_AUTH_DOMAIN
+VITE_FIREBASE_PROJECT_ID
+VITE_FIREBASE_STORAGE_BUCKET
+VITE_FIREBASE_MESSAGING_SENDER_ID
+```
+
+**server-side (.env):**
+
+```bash
+DB_USER
+DB_PASS
+FIREBASE_SERVICE_KEY
+```
+
+## Deployment
+
+- **Client:** Firebase Hosting ([Live Site](https://taskverse-0.web.app/))
+- **Server:** Vercel ([API Server](https://taskverse-server.vercel.app/))
+- All private routes are fully protected; users remain logged in after refreshing.
+
+---
+
+## Challenges & Advanced Features
+
+- Users cannot accept their own jobs
+- Sort and filter jobs by posted date
+- Dark/light theme toggle
+- Profile section with update functionality
+- Smooth animations with Framer Motion & React Bits
+- Toast notifications for all success/error events
+
+---
+
+## Screenshots
+
+**Homepage**  
+[![Homepage Screenshot](./screenshots/homepage.png)](./screenshots/homepage.png)
+
+**Profile Page**  
+[![Profile Page Screenshot](./screenshots/profile.png)](./screenshots/profile.png)
+
+**Add Job Page**  
+[![Add Job Screenshot](./screenshots/add-job.png)](./screenshots/add-job.png)
+
+**My Added Jobs Page**  
+[![My Added Jobs Screenshot](./screenshots/my-added-jobs.png)](./screenshots/my-added-jobs.png)
+
+**Job Details Page**  
+[![Job Details Screenshot](./screenshots/job-details.png)](./screenshots/job-details.png)
+
+**Register Page**  
+[![Register Page Screenshot](./screenshots/register.png)](./screenshots/register.png)
+
+---
+
+## License
+
+This project is open-source and intended for educational purposes.

@@ -94,7 +94,7 @@ const Navbar = () => {
                 className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
+                stroke="#fff"
               >
                 <path
                   strokeLinecap="round"
@@ -106,7 +106,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow bg-primary text-primary-content rounded-box w-56"
+              className="menu menu-sm dropdown-content mt-3 z-1 p-4 shadow bg-primary text-primary-content rounded-box w-56"
             >
               {navItems}
             </ul>
@@ -220,8 +220,6 @@ const Navbar = () => {
                   >
                     Logout
                   </button>
-
-                  
                 </li>
               </ul>
             </div>

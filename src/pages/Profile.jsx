@@ -97,7 +97,7 @@ const Profile = () => {
               src="https://media.licdn.com/dms/image/v2/C561BAQGpxRlo9gp3cQ/company-background_10000/company-background_10000/0/1585466636525/withel_cover?e=2147483647&v=beta&t=PCEp6-UUEB0lzhUbmL5dbMVtc2B5JCBUGeAczZHQYQw"
               alt=""
             />
-            <button className="absolute top-4 right-4 btn btn-sm btn-circle bg-secondary/20 hover:bg-secondary/30 border-none backdrop-blur-sm text-primary-content">
+            <button className="absolute top-4 right-4 btn btn-sm btn-circle bg-secondary/20 hover:bg-secondary/30 border-none backdrop-blur-sm text-white/80">
               <Camera size={18} />
             </button>
           </div>
@@ -323,13 +323,13 @@ const Profile = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
-              className="bg-base-200/80 rounded-2xl p-6 text-white shadow-lg"
+              className="bg-base-200/80 rounded-2xl p-6 text-primary-content shadow-lg"
             >
               <h3 className="text-xl font-bold mb-2">Want to work together?</h3>
-              <p className="text-white/80 mb-4 text-sm">
+              <p className="text-secondary-content/80 mb-4 text-sm">
                 Let’s discuss your project and bring your ideas to life!
               </p>
-              <button className="btn btn-secondary  w-full border-none ">
+              <button className="btn btn-secondary text-primary  w-full border-none ">
                 Contact Me
               </button>
             </motion.div>

@@ -12,22 +12,37 @@ const images = [
 
 const BannerColumn = ({ direction = "down" }) => {
   const gap = 16;
+  const [isMobile, setIsMobile] = React.useState(false);
+  const [vh, setVh] = React.useState(window.innerHeight);
 
-  const isMobile = window.matchMedia("(max-width: 640px)").matches;
-  const imgHeight = isMobile ? 100 : 300;
+  React.useEffect(() => {
+    const check = () => {
+      setIsMobile(window.innerWidth < 640);
+      setVh(window.innerHeight);
+    };
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  const imgHeight = isMobile ? 140 : 280;
   const heightPerImage = imgHeight + gap;
   const totalHeight = images.length * heightPerImage;
 
-  const loopImages = [...images, ...images];
+  // Loop more copies for mobile (to fully cover viewport)
+  const loopImages = [...images, ...images, ...images];
 
   return (
-    <div className="overflow-hidden flex flex-col gap-4">
+    <div
+      className="overflow-hidden flex flex-col gap-4"
+      style={{ height: vh + 100 }} // extend slightly beyond viewport
+    >
       <motion.div
         animate={{
           y: direction === "down" ? [0, -totalHeight] : [-totalHeight, 0],
         }}
         transition={{
-          duration: isMobile ? 30 : 25,
+          duration: isMobile ? 45 : 25, // slower on mobile for smoothness
           repeat: Infinity,
           ease: "linear",
         }}
@@ -41,9 +56,10 @@ const BannerColumn = ({ direction = "down" }) => {
             className="
               object-cover rounded-xl border border-secondary/70 shadow-md
               transition-shadow hover:shadow-[0_0_2px_#f7ce3e,0_0_4px_#f7ce3e]
-              w-40 sm:w-[220px] md:w-[320px] lg:w-[400px] xl:w-[500px]
-              h-[100px] sm:h-40 md:h-[220px] lg:h-[260px] xl:h-[300px]
+              w-40 sm:w-[220px] md:w-[320px] lg:w-[400px]
+              h-[140px] sm:h-40 md:h-[220px] lg:h-[260px]
             "
+            loading="lazy"
           />
         ))}
       </motion.div>
@@ -53,7 +69,7 @@ const BannerColumn = ({ direction = "down" }) => {
 
 const Banner = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden flex items-center justify-center border-b border-secondary">
+    <section className="relative w-full min-h-[100vh] overflow-hidden flex items-center justify-center border-b border-secondary">
       <div className="absolute inset-0 bg-linear-to-b from-primary/90 via-[#0A7373]/80 to-primary/90"></div>
       <div className="absolute inset-0 bg-black/50 z-5"></div>
 
@@ -62,7 +78,7 @@ const Banner = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-3xl sm:text-4xl md:text-6xl font-bold bg-linear-to-r from-[#f7ce3e] via-[#FFD84C] to-[#f7ce3e] bg-clip-text text-transparent mb-4 drop-shadow-lg logo-font"
+          className="text-5xl  md:text-6xl font-bold bg-linear-to-r from-[#f7ce3e] via-[#FFD84C] to-[#f7ce3e] bg-clip-text text-transparent mb-4 drop-shadow-lg logo-font"
         >
           Turn Your Skills Into Opportunity
         </motion.h1>
