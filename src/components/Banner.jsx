@@ -57,7 +57,6 @@ const Banner = () => {
       <div className="absolute inset-0 bg-linear-to-b from-[#042A2B]/90 via-[#0A7373]/80 to-[#042A2B]/90"></div>
       <div className="absolute inset-0 bg-black/50 z-5"></div>
 
-      {/* Center Content */}
       <div className="absolute z-10 text-center px-4">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
@@ -100,7 +99,7 @@ const Banner = () => {
         </div>
       </div>
 
-      {/* Background Columns */}
+    
       <div className="absolute inset-0 flex justify-center gap-2 sm:gap-4 px-2 md:px-8">
         {[0, 1, 2, 3, 4].map((i) => (
           <BannerColumn key={i} direction={i % 2 === 0 ? "down" : "up"} />

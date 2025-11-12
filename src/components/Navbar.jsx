@@ -118,9 +118,9 @@ const Navbar = () => {
               alt="TaskVerse Logo"
               className="w-10 drop-shadow-md"
             />
-            <h1 className="font-extrabold text-2xl tracking-wide hidden md:block logo-font ">
+            <h1 className="font-extrabold text-3xl tracking-wide hidden md:block logo-font text-[#d1d5dc] ">
               Task
-              <span className="text-white">Verse</span>
+              <span className="text-secondary">Verse</span>
             </h1>
           </Link>
         </div>
