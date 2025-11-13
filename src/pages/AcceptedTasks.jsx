@@ -90,7 +90,7 @@ const MyAcceptedTasks = () => {
   return (
     <div className="min-h-screen  py-10 px-4">
       <div className="container mx-auto max-w-5xl">
-        {/* Header */}
+      
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -128,7 +128,7 @@ const MyAcceptedTasks = () => {
             </span>
           </div>
 
-          {/* Add New Job Button */}
+      
           <Link to="/add-job">
             <motion.button
               whileHover={{ scale: 1.05 }}

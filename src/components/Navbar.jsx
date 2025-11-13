@@ -212,7 +212,6 @@ const Navbar = () => {
                     </label>
                   </div>
                 </li>
-                {/* Logout Button */}
                 <li className="mt-2">
                   <button
                     onClick={signOutUser}

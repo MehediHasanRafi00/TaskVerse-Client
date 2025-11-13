@@ -89,7 +89,6 @@ const Profile = () => {
           animate={{ opacity: 1, y: 0 }}
           className="bg-base-200/80 rounded-2xl shadow-xl overflow-hidden border border-secondary/30"
         >
-          {/* Cover Image */}
           <div className="relative h-48 bg-base-300">
             <div className="absolute inset-0 bg-black/20" />
             <img
@@ -102,7 +101,6 @@ const Profile = () => {
             </button>
           </div>
 
-          {/* Avatar & Info */}
           <div className="relative px-8 pb-8 -mt-16">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
               <div className="relative w-32 h-32 rounded-2xl overflow-hidden ring-4 ring-secondary/50 shadow-lg bg-gray-100">
@@ -116,7 +114,6 @@ const Profile = () => {
                 </button>
               </div>
 
-              {/* Edit / Save Buttons */}
               <div className="flex gap-2">
                 {!isEditing ? (
                   <motion.button
@@ -149,7 +146,6 @@ const Profile = () => {
               </div>
             </div>
 
-            {/* Name & Title */}
             <div className="mt-6 space-y-1">
               {isEditing ? (
                 <div className="space-y-3 max-w-md">
@@ -189,7 +185,6 @@ const Profile = () => {
           </div>
         </motion.div>
 
-        {/* ==== STATS ==== */}
         <div className="grid md:grid-cols-4 gap-6">
           {stats.map((stat, i) => {
             const Icon = stat.icon;
@@ -216,7 +211,6 @@ const Profile = () => {
           })}
         </div>
 
-        {/* ==== ABOUT & SKILLS ==== */}
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
             <motion.div
@@ -279,7 +273,6 @@ const Profile = () => {
             </motion.div>
           </div>
 
-          {/* Quick Info */}
           <div className="space-y-8">
             <motion.div
               initial={{ opacity: 0, x: 20 }}

@@ -30,10 +30,10 @@ const categories = [
 const TopCategories = () => {
   return (
     <section className="py-20  relative overflow-hidden">
-      {/* subtle background pattern */}
+     
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
-        {/* Header */}
+       
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -59,7 +59,7 @@ const TopCategories = () => {
           </p>
         </motion.div>
 
-        {/* Categories Grid */}
+       
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {categories.map((cat, i) => {
             const Icon = cat.icon;

@@ -91,7 +91,6 @@ const JobDetail = () => {
   return (
     <div className="min-h-screen bg-linear-to-br from-base-100 to-base-300 py-8 px-4">
       <div className="max-w-6xl mx-auto">
-        {/* Back Button */}
         <motion.button
           onClick={() => navigate(-1)}
           initial={{ opacity: 0, x: -20 }}
@@ -103,14 +102,12 @@ const JobDetail = () => {
         </motion.button>
 
         <div className="grid lg:grid-cols-3 gap-6">
-          {/* Main Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="lg:col-span-2 space-y-6"
           >
-            {/* Cover Image & Title Card */}
             <motion.div
               whileHover={{
                 boxShadow: "0 0 15px 5px #f7ce3e",
@@ -118,7 +115,6 @@ const JobDetail = () => {
               transition={{ type: "spring", stiffness: 300 }}
               className="bg-base-200/80 rounded-xl shadow-xl overflow-hidden border border-secondary/50"
             >
-              {/* Cover Image */}
               <div className="relative h-72 overflow-hidden">
                 <img
                   src={job.coverImage}
@@ -127,7 +123,6 @@ const JobDetail = () => {
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
 
-                {/* Category Badge */}
                 <div className="absolute top-4 right-4">
                   <span className="bg-[#f7ce3e] text-black px-4 py-2 rounded-full text-sm font-bold shadow-lg">
                     {job.category}
@@ -135,13 +130,11 @@ const JobDetail = () => {
                 </div>
               </div>
 
-              {/* Title Section */}
               <div className="p-8">
                 <h1 className="text-4xl font-bold text-primary-content mb-4 leading-tight">
                   {job.title}
                 </h1>
 
-                {/* Quick Stats */}
                 <div className="flex flex-wrap gap-4 mb-6">
                   <div className="flex items-center gap-2 text-secondary-content/60">
                     <Calendar size={18} />
@@ -155,7 +148,6 @@ const JobDetail = () => {
                   </div>
                 </div>
 
-                {/* Action Buttons */}
                 <div className="flex gap-3">
                   <motion.button
                     onClick={handleAccept}
@@ -185,7 +177,6 @@ const JobDetail = () => {
               </div>
             </motion.div>
 
-            {/* Summary */}
             <motion.div
               whileHover={{ boxShadow: "0 0 12px #f7ce3e" }}
               transition={{ duration: 0.3 }}
@@ -204,7 +195,6 @@ const JobDetail = () => {
               </p>
             </motion.div>
 
-            {/* Full Description */}
             <motion.div
               whileHover={{ boxShadow: "0 0 12px #f7ce3e" }}
               transition={{ duration: 0.3 }}
@@ -220,7 +210,6 @@ const JobDetail = () => {
               </div>
             </motion.div>
 
-            {/* Skills */}
             {job.skills && (
               <motion.div
                 whileHover={{ boxShadow: "0 0 12px #f7ce3e" }}
@@ -249,7 +238,6 @@ const JobDetail = () => {
               </motion.div>
             )}
 
-            {/* Experience */}
             {job.experienceRequired && (
               <motion.div
                 whileHover={{ boxShadow: "0 0 12px #f7ce3e" }}
@@ -271,14 +259,12 @@ const JobDetail = () => {
             )}
           </motion.div>
 
-          {/* Sidebar */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="lg:col-span-1 space-y-6"
           >
-            {/* Posted By */}
             <motion.div
               whileHover={{ boxShadow: "0 0 12px #f7ce3e" }}
               transition={{ duration: 0.3 }}
@@ -309,7 +295,6 @@ const JobDetail = () => {
                 </div>
               </div>
 
-              {/* Contact Info */}
               <div className="space-y-3 mb-6">
                 <div className="flex items-center gap-3  text-gray-600">
                   <div className="w-8 h-8 bg-gray-300 rounded-lg flex items-center justify-center">
@@ -329,7 +314,6 @@ const JobDetail = () => {
                 </div>
               </div>
 
-              {/* Contact Button */}
               <motion.button
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.97 }}
@@ -339,7 +323,6 @@ const JobDetail = () => {
               </motion.button>
             </motion.div>
 
-            {/* Job Stats */}
             <motion.div
               whileHover={{ boxShadow: "0 0 12px #f7ce3e" }}
               transition={{ duration: 0.3 }}

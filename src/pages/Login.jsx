@@ -24,7 +24,7 @@ const Login = () => {
     toast.loading("Loading...", { id: "login-user" });
     signInUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         e.target.reset();
         toast.success("Logged in successfully!", { id: "login-user" });
         navigate(location.state || "/");
@@ -54,7 +54,7 @@ const Login = () => {
     toast.loading("Loading...", { id: "login-user" });
     signInWithGoogle()
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         toast.success("Logged in successfully!", { id: "login-user" });
         navigate(location?.state || "/");
       })

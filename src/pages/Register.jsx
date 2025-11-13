@@ -48,7 +48,7 @@ const Register = () => {
     toast.loading("Creating user...", { id: "create-user" });
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         e.target.reset();
         updateUserProfile(displayName, photoURL);
         toast.success("User created successfully!", { id: "create-user" });
@@ -77,7 +77,7 @@ const Register = () => {
     signInWithGoogle()
       .then((result) => {
         toast.success("User created successfully!", { id: "create-user" });
-        console.log(result.user);
+        // console.log(result.user);
         navigate(location.state || "/");
       })
       .catch((error) => {

@@ -46,7 +46,7 @@ const PostJob = () => {
       created_at: new Date().toISOString(),
     };
 
-    console.log("Job Data:", jobData);
+    // console.log("Job Data:", jobData);
 
     try {
       await axios.post("/addJob", jobData);
@@ -98,7 +98,7 @@ const PostJob = () => {
         </motion.div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Job Title */}
+       
           <div>
             <label className="block font-medium text-primary-content mb-1">
               Job Title *
@@ -112,7 +112,7 @@ const PostJob = () => {
             />
           </div>
 
-          {/* Category */}
+        
           <div>
             <label className="block font-medium text-primary-content mb-1">
               Category *
@@ -137,7 +137,7 @@ const PostJob = () => {
             </select>
           </div>
 
-          {/* Price */}
+      
           <div>
             <label className="block font-medium text-primary-content mb-1">
               Budget / Price ($) *
@@ -151,7 +151,7 @@ const PostJob = () => {
             />
           </div>
 
-          {/* Summary */}
+      
           <div>
             <label className="block font-medium text-primary-content mb-1">
               Short Summary *
@@ -165,7 +165,7 @@ const PostJob = () => {
             />
           </div>
 
-          {/* Description */}
+       
           <div>
             <label className="block font-medium text-primary-content mb-1">
               Full Description *
@@ -179,7 +179,6 @@ const PostJob = () => {
             ></textarea>
           </div>
 
-          {/* Skills */}
           <div>
             <label className="block font-medium text-primary-content mb-1">
               Skills (comma separated)
@@ -192,7 +191,6 @@ const PostJob = () => {
             />
           </div>
 
-          {/* Experience Required */}
           <div>
             <label className="block font-medium text-primary-content mb-1">
               Experience Required
@@ -205,7 +203,6 @@ const PostJob = () => {
             />
           </div>
 
-          {/* Cover Image */}
           <div>
             <label className="block font-medium text-primary-content mb-1">
               Cover Image URL *
@@ -219,7 +216,6 @@ const PostJob = () => {
             />
           </div>
 
-          {/* Posted By Info */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block font-medium text-primary-content mb-1">
@@ -245,7 +241,6 @@ const PostJob = () => {
             </div>
           </div>
 
-          {/* Submit */}
           <div className="text-center pt-4">
             <button
               type="submit"

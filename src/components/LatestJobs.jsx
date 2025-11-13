@@ -28,7 +28,7 @@ const LatestJobs = () => {
         SetJobs(data);
       });
   }, [SetJobs]);
-  console.log(jobs);
+  // console.log(jobs);
 
   return (
     <div className="container mx-auto mt-40 mb-20 px-5">

@@ -25,7 +25,7 @@ const MyAddedJobs = () => {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    axios.get(`/myAddedJobs/?email=${user.email}`).then((data) => {
+    axios.get(`/myAddedJobs?email=${user.email}`).then((data) => {
       setJobs(data.data);
       setLoading(false);
     });
@@ -106,7 +106,6 @@ const MyAddedJobs = () => {
   return (
     <div className="min-h-screen bg-linear-to-br from-base-100 to-base-300 py-12 px-4">
       <div className="container mx-auto max-w-7xl">
-        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -144,7 +143,6 @@ const MyAddedJobs = () => {
             </span>
           </div>
 
-          {/* Add New Job Button */}
           <Link to="/add-job">
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -156,7 +154,6 @@ const MyAddedJobs = () => {
             </motion.button>
           </Link>
         </motion.div>
-        {/* Jobs List */}
         <div className="space-y-4">
           {jobs.map((job, index) => (
             <motion.div
@@ -168,7 +165,6 @@ const MyAddedJobs = () => {
               className="bg-base-200/80 rounded-2xl shadow-lg overflow-hidden border  border-secondary/30 hover:border-secondary/60 group"
             >
               <div className="grid md:grid-cols-12 gap-4 p-6">
-                {/* Job Image */}
                 <div className="md:col-span-3">
                   <div className="relative rounded-xl overflow-hidden h-40 md:h-full">
                     <img
@@ -181,7 +177,6 @@ const MyAddedJobs = () => {
                   </div>
                 </div>
 
-                {/* Job Details */}
                 <div className="md:col-span-6 flex flex-col justify-between">
                   <div>
                     <h3 className="text-2xl font-bold text-primary-content mb-2 group-hover:text-secondary transition-colors duration-300">
@@ -217,9 +212,7 @@ const MyAddedJobs = () => {
                   </div>
                 </div>
 
-                {/* Actions */}
                 <div className="md:col-span-3 flex flex-col justify-center gap-3">
-                  {/* Stats */}
                   <div className="bg-accent  border border-secondary/20 rounded-xl p-4 mb-2 hover:bg-linear-to-br hover:from-primary/5 hover:to-secondary/5 transition-all duration-300">
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-xs text-secondary-content/90">
@@ -237,7 +230,6 @@ const MyAddedJobs = () => {
                     </div>
                   </div>
 
-                  {/* Action Buttons */}
                   <div className="flex flex-col gap-2">
                     <Link
                       to={`/job-detail/${job._id}`}
@@ -270,7 +262,6 @@ const MyAddedJobs = () => {
             </motion.div>
           ))}
         </div>
-        {/* Desktop Table View */}
         <div className="hidden xl:block mt-12 bg-base-200/80 rounded-2xl shadow-lg overflow-hidden border border-secondary/30 hover:border-secondary/60">
           <div className="overflow-x-auto">
             <table className="table">

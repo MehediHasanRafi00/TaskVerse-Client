@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 import JobCard from "../components/JobCard";
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { ArrowDownUp, CalendarArrowDown, Sparkles } from "lucide-react";
+import useAxios from "../hook/useAxios";
+import Loading from "../components/Loading";
 
 const containerVariants = {
   hidden: {},
@@ -20,7 +22,25 @@ const cardVariants = {
 
 const AllJobs = () => {
   const data = useLoaderData();
-  console.log(data);
+  const [jobs, setJobs] = useState(data);
+  const [sortOption, setSortOption] = useState("");
+  const [loading, setLoading] = useState(false);
+  const axios = useAxios();
+
+  const handleSortSystem = async (e) => {
+    const sortValue = e.target.value;
+    setSortOption(sortValue);
+    setLoading(true);
+    try {
+      const res = await axios.get(`/sort-by-date/jobs?sort=${sortValue}`);
+      setJobs(res.data);
+      setLoading(false);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  if(loading) return <Loading></Loading>
 
   return (
     <div className="container mx-auto my-8 px-5">
@@ -44,13 +64,44 @@ const AllJobs = () => {
         </p>
       </motion.div>
 
+      <div className="mb-10 flex justify-end">
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          whileHover={{ scale: 1.02 }}
+          className="relative"
+        >
+          <div className="flex items-center gap-2 bg-base-200/80 border-2 border-secondary/50 hover:border-secondary transition-all duration-300 px-4 py-2 rounded-xl shadow-md hover:shadow-lg">
+            <div className="w-9 h-8 bg-secondary/10 rounded-lg flex items-center justify-center">
+              <CalendarArrowDown size={18} className="text-secondary" />
+            </div>
+
+            <select
+              defaultValue={sortOption}
+              onChange={handleSortSystem}
+              className="select  select-ghost bg-base-200 border-none outline-none focus:outline-none font-medium text-primary-content cursor-pointer"
+            >
+              <option disabled className="bg-secondary text-black/80">
+                Sort By Date/Time
+              </option>
+              <option value="newest" className="bg-secondary mt-0.5 text-black">
+                Newest First
+              </option>
+              <option value="oldest" className="bg-secondary mt-0.5 text-black">
+                Oldest First
+              </option>
+            </select>
+          </div>
+        </motion.div>
+      </div>
+
       <motion.div
         className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
         variants={containerVariants}
         initial="hidden"
         animate="show"
       >
-        {data.map((job) => (
+        {jobs.map((job) => (
           <motion.div key={job._id} variants={cardVariants}>
             <JobCard job={job} />
           </motion.div>
