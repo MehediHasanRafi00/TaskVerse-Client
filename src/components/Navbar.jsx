@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 
 const Navbar = () => {
-  const { user, signOutUser } = use(AuthContext);
+  const { user, signOutUser, loading } = use(AuthContext);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   useEffect(() => {
@@ -130,14 +130,19 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end">
-          {user ? (
+          {loading ? (
+            <div className="skeleton h-10 w-10 border-2 border-secondary/60 bg-secondary/20 shrink-0 rounded-full flex justify-center items-center">
+              {" "}
+              <span className="loading loading-spinner text-secondary/80"></span>{" "}
+            </div>
+          ) : user ? (
             <div className="dropdown dropdown-end z-50">
               <div
                 tabIndex={0}
                 role="button"
                 className="btn btn-ghost btn-circle avatar hover:ring-2 hover:ring-secondary/60 transition-all"
               >
-                <div className="w-10 h-10 border-2 border-secondary rounded-full overflow-hidden">
+                <div className="w-10 h-10 border-2 border-secondary/80 rounded-full overflow-hidden">
                   <img
                     alt="User Avatar"
                     referrerPolicy="no-referrer"
