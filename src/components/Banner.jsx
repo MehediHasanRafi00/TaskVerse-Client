@@ -80,7 +80,7 @@ const Banner = () => {
           transition={{ duration: 1 }}
           className="text-5xl  md:text-6xl font-bold bg-linear-to-r from-[#f7ce3e] via-[#FFD84C] to-[#f7ce3e] bg-clip-text text-transparent mb-4 drop-shadow-lg logo-font"
         >
-          Turn Your Skills Into Opportunity
+          Turn Your Skills Into Opportunity 
         </motion.h1>
 
         <motion.p
